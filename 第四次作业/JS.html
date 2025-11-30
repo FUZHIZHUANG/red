@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS</title>
+</head>
+
+<body>
+  <script>
+
+    let obj = { name: "荧", age: 20, gender: 'fasmale' };
+
+
+    function copy(insertObj) {
+      let newObj = {};
+      for (let i in insertObj) {
+        newObj[i] = insertObj[i];
+      }
+      return newObj;
+    }
+
+
+    let obj1 = copy(obj);
+    let obj2 = obj1;
+    let obj3 = copy(obj);
+    let obj4 = obj3;
+    obj2.name = "空";
+    obj2.gender = "male";
+
+
+    let arr = [];
+
+
+    arr.push(obj1, obj2, obj3, obj4);
+
+
+    console.table(arr);
+  </script>
+
+</body>
+
+</html>
