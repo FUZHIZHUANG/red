@@ -5,37 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>三年之约</title>
+  <script src="./千.js"></script>
 </head>
 
 <body>
   <script>
-    let obj = {
-      name: "萧炎", age: 18,
-      address: { world: "斗气大陆", city: "乌坦城", family: "萧家" },
-      title: ["炎帝", "无尽火域掌控者"]
-    };
-    let { name } = obj;
-    console.log(name);//解构
-    let { log } = console;
-    log("三十年河东，三十年河西，莫欺少年穷");
-    let { name: newName } = obj;
-    console.log(newName);//变量重命名
-    let { address: { world } } = obj;
-    console.log(world);
-    const { title: [titleOne] } = obj;
-    console.log(titleOne);
-
-
-    let copy = structuredClone(obj);
-    copy.name = "叶修";
-    copy.address.city = "巴黎世";
-    copy.title = "君莫笑";
-    console.log(copy.name);
-    console.log(copy.address.city);
-    console.log(copy.title);
-    console.log(obj.name);
-    console.log(obj.address.city);
-    console.log(obj.title);
 
 
   </script>
