@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网易云音乐</title>
+  <link rel="stylesheet" href="寒假考核.css">
+</head>
+
+<body>
+  <!-- 侧边栏 -->
+  <div class="sidebar" id="sidebar">
+    <div class="header">
+      <img src="logo.jpg" alt="" class="logo">
+      <h1 style="color: black;">网易云音乐</h1>
+    </div>
+    <div class="nav">
+      <ul style="color: black;">
+        <li><a href="javascript:;" class="active" data-id="0">推荐</a></li>
+        <li><a href="javascript:;" data-id="1">精选</a></li>
+        <li><a href="javascript:;" data-id="2">我喜欢的音乐</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- 头部 -->
+  <div class="nameheader">
+    <!-- 头像+昵称 -->
+    <img src="头像.png" alt="" class="touxiang">
+    <h2>云村</h2>
+    <!-- 搜索框 -->
+    <div class="search">
+      <div class="search-input-wrap">
+        <input type="text" class="search-input" placeholder="搜索音乐/专辑/歌手/歌单...">
+        <ul class="search-list"></ul>
+      </div>
+      <button class="search-btn">搜索</button>
+    </div>
+  </div>
+
+
+
+  <div class="content">
+    <!-- 推荐 -->
+    <div class="item active">
+      <div class="gedan">
+        <h2>推荐歌单</h2>
+        <ul class="gedanlist"></ul>
+      </div>
+      <div class="banner">
+        <h3 style="font-size: 30px;">精选活动</h3>
+        <ul class="imglist"></ul>
+        <div class="button">
+          <div class="button-left">&#8249;</div>
+          <div class="button-right">&#8250;</div>
+        </div>
+        <ul class="point"></ul>
+      </div>
+    </div>
+
+    <!-- 精选 -->
+    <div class="item">
+      <h1 style="text-align: center;">歌单广场</h1>
+      <div class="recomend">
+        <ul class="tab"></ul>
+        <ul class="guangchang"></ul>
+      </div>
+    </div>
+
+    <!-- 我喜欢的音乐 -->
+    <div class="item liked-music-page">
+      <div class="liked-music-header">
+        <img class="liked-music-cover" src="logo.jpg" alt="">
+        <div class="liked-music-info">
+          <h2 class="liked-music-name">我喜欢的音乐</h2>
+          <p class="liked-music-creator"><span>云村</span></p>
+        </div>
+      </div>
+      <div class="liked-music-song-list-wrap">
+        <h3>歌曲<span>0</span></h3>
+        <ul class="liked-music-song-list"></ul>
+      </div>
+    </div>
+
+    <!-- 歌单详情 -->
+    <div class="item playlist-detail-page">
+      <!-- 返回按钮 -->
+      <div class="back-btn-wrap">
+        <button class="back-btn">← 返回</button>
+      </div>
+      <!-- 歌单头部信息 -->
+      <div class="playlist-header">
+        <img class="playlist-cover" src="" alt="">
+        <div class="playlist-info">
+          <h2 class="playlist-name"></h2>
+          <p class="playlist-play-count"></p>
+          <p class="playlist-creator">创建者：<span></span></p>
+          <p class="playlist-desc"></p>
+        </div>
+      </div>
+      <!-- 歌曲列表 -->
+      <div class="song-list-wrap">
+        <h3>歌曲列表</h3>
+        <ul class="song-list"></ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 底部播放控制栏 -->
+  <div class="player-bar">
+    <div class="player-info">
+      <span class="playing-song-name">暂无播放歌曲</span>
+      <span class="playing-song-singer">- 暂无歌手</span>
+    </div>
+    <div class="player-controls">
+      <button class="prev-btn">◀</button>
+      <button class="play-pause-btn">▶</button>
+      <button class="next-btn">▶▶</button>
+      <div class="progress-wrap">
+        <span class="current-time">00:00</span>
+        <progress class="progress-bar" value="0" max="100"></progress>
+        <span class="total-time">00:00</span>
+      </div>
+    </div>
+    <div class="volume-control">
+      <button class="volume-btn">🔊</button>
+      <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+    </div>
+  </div>
+  <!-- 播放详情页 -->
+  <div class="song-detail-page" style="display:none;">
+    <div class="song-detail-inner">
+      <button class="song-detail-close" onclick="closeSongDetailPage()">✕</button>
+      <div class="song-detail-left">
+        <div class="dynamic-cover-wrap">
+          <img class="dynamic-cover" src="" alt="封面">
+        </div>
+      </div>
+      <div class="song-detail-right">
+        <h2 class="detail-title"></h2>
+        <p class="detail-artist"></p>
+        <p class="detail-album"></p>
+        <div class="lyrics-wrap">
+          <pre class="lyrics-content">加载歌词中...</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="寒假考核.js"></script>
+</body>
+
+</html>
