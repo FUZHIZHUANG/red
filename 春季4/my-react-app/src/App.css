@@ -1,0 +1,239 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.list {
+  position: fixed;
+  top: 10%;
+  left: 43%;
+  transform: translate(-50%, -50%) preserve-3d;
+  border-radius: 10px;
+  width: 300px;
+  height: 500px;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 1px 1px 12px #000;
+  box-shadow: 1px 1px 12px #000;
+  -webkit-transform: preserve-3d;
+  -ms-transform: preserve-3d;
+  transform: preserve-3d;
+  -webkit-perspective: 2000px;
+  perspective: 2000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #000;
+}
+
+.biaoti {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: relative;
+  top: -200px;
+}
+
+.input {
+  width: 500px;
+  height: 100px;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 10px;
+  position: absolute;
+  top: 75%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid #000;
+  border-radius: 0.5rem;
+  box-shadow: 2.5px 3px 0 #000;
+  outline: none;
+  transition: ease 0.25s;
+}
+
+.input:focus {
+  box-shadow: 5.5px 7px 0 black;
+}
+
+
+.btn1 {
+  --color: #0077ff;
+  font-family: inherit;
+  display: inline-block;
+  width: 6em;
+  height: 2.6em;
+  line-height: 2.5em;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: absolute;
+  top: 80%;
+  left: 38%;
+
+}
+
+.btn1::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+
+.btn1:hover {
+  color: white;
+}
+
+.btn1:before {
+  top: 100%;
+  left: 100%;
+  transition: 0.3s all;
+}
+
+.btn1:hover::before {
+  top: -30px;
+  left: -30px;
+}
+
+.btn2 {
+  --color: #0077ff;
+  font-family: inherit;
+  display: inline-block;
+  width: 6em;
+  height: 2.6em;
+  line-height: 2.5em;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: absolute;
+  top: 80%;
+  left: 58%;
+
+}
+
+.btn2::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+
+.btn2:hover {
+  color: white;
+}
+
+.btn2:before {
+  top: 100%;
+  left: 100%;
+  transition: 0.3s all;
+}
+
+.btn2:hover::before {
+  top: -30px;
+  left: -30px;
+}
+
+
+.ld {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+  font-size: 20px;
+}
+
+.ld li {
+  list-style-type: none;
+}
+
+.qx {
+  position: absolute;
+  top: 20%;
+  left: 70%;
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1.5px solid #000;
+  box-shadow: 2.5px 3px 0 #000;
+}
+
+.qbx {
+  position: absolute;
+  top: 25%;
+  left: 70%;
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1.5px solid #000;
+  box-shadow: 2.5px 3px 0 #000;
+}
+
+.fx {
+  position: absolute;
+  top: 30%;
+  left: 70%;
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1.5px solid #000;
+  box-shadow: 2.5px 3px 0 #000;
+}
