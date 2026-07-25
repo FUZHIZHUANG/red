@@ -1,0 +1,359 @@
+/* move.css - 移动端竖屏适配样式 */
+
+@media (max-width: 500px) {
+
+  /* ========== 全局 ========== */
+  body {
+    font-size: 14px;
+  }
+
+  /* 强制 App 容器不限制最小高度 */
+  .App {
+    min-height: auto !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ========== 课表抽屉 ========== */
+  .drawer {
+    height: 90% !important;
+    min-height: 50vh;
+    padding: 8px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box;
+  }
+
+  /* 标题区域不伸缩 */
+  .drawer h3 {
+    flex-shrink: 0;
+    margin: 5px 0;
+  }
+
+  /* 表格容器自动占满剩余高度 */
+  .weekday-header {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow-x: visible !important;
+    width: 100% !important;
+  }
+
+  /* 课表表格 */
+  .schedule-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed;
+    font-size: 9px;
+    height: 100%;
+    border-collapse: collapse;
+    word-break: break-word;
+    margin-bottom: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 1 0 auto;
+  }
+
+  /* 单元格 */
+  .schedule-table th,
+  .schedule-table td {
+    height: 36px !important;
+    padding: 2px 1px;
+    line-height: 1.2;
+  }
+
+  /* 节次列：宽度约10% */
+  .period-cell {
+    width: 10%;
+    font-size: 9px;
+    font-weight: bold;
+    background: #f5f5f5;
+    text-align: center;
+  }
+
+  /* 表头（日期行） */
+  .schedule-table th {
+    font-size: 9px;
+    white-space: normal;
+    word-break: break-word;
+    background: #fafafa;
+  }
+
+  /* 课程名称 */
+  .course-name {
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  /* 课程辅助信息 */
+  .course-info {
+    font-size: 8px;
+    opacity: 0.9;
+  }
+
+  /* 活动单元格文字 */
+  .activity-cell .course-name,
+  .activity-cell .course-info {
+    font-size: 10px;
+  }
+
+  /* 空单元格 “+” 按钮 */
+
+  .add-btn {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    /* 移动端稍大 */
+    color: #555;
+    line-height: 1;
+    pointer-events: none;
+    /* 不拦截 td 的点击 */
+    transition: opacity 0.15s ease;
+  }
+
+  /* 手指按住单元格时显示加号 */
+  .empty-cell:active .add-btn {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* 删除图标 */
+  .delete-icon {
+    width: 16px;
+    height: 16px;
+    line-height: 14px;
+    font-size: 12px;
+    top: 2px;
+    right: 2px;
+    display: block !important;
+    /* 强制显示 */
+    opacity: 0.7;
+    /* 半透明，不突兀 */
+  }
+
+  /* ========== 添加活动弹窗 ========== */
+  .activity-change.open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10vh;
+  }
+
+  .step-content {
+    position: static;
+    width: 300px;
+    margin-left: -150px;
+    margin-top: 80px;
+  }
+
+  .step-content h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .step-content input {
+    width: 100%;
+    height: 44px;
+    font-size: 16px;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  .preset-tags {
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    height: 100px !important;
+    width: 350px !important;
+  }
+
+  .preset-tag {
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #333;
+  }
+
+  .preset-tag:active {
+    background: #4f4fff;
+    color: #fff;
+  }
+
+  /* 下一步按钮 */
+  .nextBtn {
+    position: fixed;
+    margin-top: 100px;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 25px;
+    background: #4f4fff;
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ========== 周次/时间选择面板 ========== */
+  .week-picker-overlay,
+  .time-picker-overlay {
+    align-items: flex-end;
+  }
+
+  .week-picker-drawer,
+  .time-picker-drawer {
+    max-height: 65vh;
+    border-radius: 20px 20px 0 0;
+    padding: 20px 16px 30px;
+    z-index: 10;
+  }
+
+  .week-tags {
+    gap: 8px;
+  }
+
+  .week-tag {
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+
+  .add-slot-btn,
+  .confirm-btn {
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 12px;
+  }
+
+  /* 选择时间行 */
+  .picker-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  .add-time-btn {
+    height: 20px !important;
+    font-size: 14px !important;
+    margin-top: 12px !important;
+    text-align: center !important;
+    border-radius: 50% !important;
+    border: none !important;
+  }
+
+  .selected-tags {
+    gap: 6px;
+  }
+
+  .selected-time-tag,
+  .selected-week-tag {
+    background: #e8f0fe;
+    color: #4f4fff;
+    border-radius: 12px;
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+
+  /* ========== 详情抽屉 ========== */
+  .detail-drawer {
+    max-height: 45vh;
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  .detail-drawer ul li {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  /* ========== 课表切换按钮 ========== */
+  .schedule-switch {
+    position: static;
+  }
+
+
+  .last,
+  .next {
+    position: fixed !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 36px !important;
+    height: 80px !important;
+    line-height: 80px !important;
+    font-size: 36px !important;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    z-index: 100;
+  }
+
+  .last {
+    left: 0 !important;
+    border-radius: 0 6px 6px 0 !important;
+  }
+
+  .next {
+    right: 0 !important;
+    border-radius: 6px 0 0 6px !important;
+  }
+
+  .last.open,
+  .next.open {
+    display: block !important;
+  }
+
+  /* 点击反馈 */
+  .last:active,
+  .next:active {
+    background-color: aqua;
+    color: #fff !important;
+  }
+
+  .last:hover,
+  .next:hover {
+    background-color: aqua;
+    color: #ccc !important;
+  }
+
+  /* 回到本周按钮 */
+  .current {
+    top: 15px;
+    right: 15px !important;
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 6px;
+    background: #4f4fff;
+    color: #fff;
+    border: none;
+  }
+
+  /* 遮罩层 */
+  .detail-overlay {
+    z-index: 25;
+  }
+}
+
+.activity-cell {
+  touch-action: none;
+  /* 禁止浏览器默认手势，防止页面滚动 */
+}
+
+.activity-cell {
+  touch-action: none;
+  /* 禁止浏览器默认手势，防止页面滚动 */
+}
