@@ -1,0 +1,555 @@
+.App {
+  width: 100%;
+  height: 100%;
+}
+
+.drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background: #f0f0f0;
+  padding: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  /* 初始藏在屏幕下方 */
+  transition: transform 0.4s ease;
+}
+
+.drawer.open {
+  transform: translateY(0);
+  /* 拉上来 */
+}
+
+.toggle-button button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 900;
+  padding: 6px 12px;
+  background-color: #4f4fff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 课程样式 */
+.schedule-table {
+  width: 1650px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-top: 20px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+  vertical-align: middle;
+  height: 48px;
+  /* 可以适当减小，比如 40px，让12节课更容易一屏显示 */
+}
+
+.period-cell {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.course-cell {
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.course-name {
+  font-weight: bold;
+}
+
+.course-info {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.activity-cell {
+  position: relative;
+  color: white;
+  background-color: #fd907d;
+  border: 1px solid #e0c36a;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+/* 遮罩层 */
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  /* 比课表 drawer 的 z-index 高一层，确保在课表上方 */
+}
+
+/* 课程详情 */
+.detail-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 24px;
+  border-radius: 16px 16px 0 0;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  z-index: 30;
+  /* 在最顶层 */
+}
+
+.detail-drawer.open {
+  transform: translateY(0);
+}
+
+.detail-drawer ul {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.detail-drawer ul li {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+
+/* 增删活动 */
+.activity-change {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  padding: 24px;
+  display: none;
+  z-index: 901;
+}
+
+.activity-change.open {
+  display: block;
+}
+
+/* 增添按钮 */
+.empty-cell {
+  position: relative;
+  cursor: pointer;
+}
+
+.add-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  position: absolute;
+  font-size: 50px;
+  /* 单元格水平垂直居中 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  background: #d7d8d9;
+  color: #fff;
+  text-align: center;
+  line-height: 60px;
+}
+
+.empty-cell:hover .add-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* 下一步箭头 */
+.nextBtn {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 70%;
+  right: 50%;
+  font-size: 30px;
+  background: rgb(79, 79, 255);
+  color: #fff;
+  border-radius: 20%;
+  border: none;
+  cursor: pointer;
+}
+
+/* 添加活动流程 */
+.step-content {
+  margin-bottom: 20px;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  font-size: 20px;
+}
+
+.activity-change input {
+  height: 40px;
+  width: 400px;
+}
+
+/* 添加的活动信息 */
+.activity-info {
+  margin-top: 20px;
+  font-size: 16px;
+  z-index: 100;
+}
+
+/* 删除活动 */
+.delete-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  line-height: 16px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  display: none;
+}
+
+.activity-cell:hover .delete-icon {
+  display: block;
+}
+
+/* 切换课表 */
+.last {
+  width: 30px;
+  height: 75px;
+  color: #ccc;
+  background-color: #00000050;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-radius: 0 5px 5px 0;
+  text-align: center;
+  line-height: 75px;
+  font-size: 40px;
+  border: none;
+  display: none;
+}
+
+.last.open {
+  display: block;
+}
+
+.last:hover {
+  background-color: aqua;
+  color: #fff;
+}
+
+.next {
+  width: 30px;
+  height: 75px;
+  color: #ccc;
+  background-color: #00000050;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  border-radius: 5px 0 0 5px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 40px;
+  border: none;
+  display: none;
+}
+
+.next.open {
+  display: block;
+}
+
+.next:hover {
+  background-color: aqua;
+  color: #fff;
+}
+
+.current {
+  position: absolute;
+  top: 30px;
+  right: 70px;
+  padding: 6px 12px;
+  background-color: #4f4fff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 拖动活动半透明 */
+.activity-cell.dragging {
+  opacity: 0.4;
+}
+
+/* 空单元格被拖拽悬停时高亮，并显示“+” */
+.empty-cell.drag-over {
+  background-color: #e0f7fa;
+}
+
+.empty-cell.drag-over .add-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 周次选择面板 */
+.week-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+}
+
+.week-picker-drawer {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px 16px 0 0;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.week-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.week-tag {
+  padding: 6px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+}
+
+.week-tag.selected {
+  background: #4f4fff;
+  color: #fff;
+  border-color: #4f4fff;
+}
+
+.confirm-btn {
+  display: block;
+  width: 50%;
+  padding: 12px;
+  background: #4f4fff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  margin: 0 auto;
+}
+
+/* “添加时间” 按钮 */
+.add-time-btn {
+  margin-top: 12px;
+  color: #ebebf1;
+  font-size: 14px;
+  height: 20px;
+  cursor: pointer;
+  background-color: blue;
+  border-radius: 50%;
+  border: none;
+}
+
+/* 已选周次小标签 */
+.selected-weeks {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.selected-week-tag {
+  background: #e8f0fe;
+  color: #4f4fff;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 13px;
+}
+
+
+/* 时间选择器面板 */
+.time-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.time-picker-drawer {
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px 16px 0 0;
+  animation: slideUp 0.3s ease;
+}
+
+.time-picker-drawer .picker-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+/* 调整 picker 容器宽度 */
+.time-picker-drawer .picker-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+
+
+.add-slot-btn {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  background: #4f4fff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  margin: 10px auto;
+}
+
+.selected-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0px;
+  justify-content: center;
+}
+
+.selected-time-tag {
+  background: #e8f0fe;
+  color: #4f4fff;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 13px;
+}
+
+.remove-time {
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.preset-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  width: 380px;
+}
+
+.preset-tag {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.preset-tag:hover {
+  background: #4f4fff;
+  color: #fff;
+  border-color: #4f4fff;
+}
+
+/* 滑动动画 */
+
+.weekday-header {
+  animation-duration: 0.25s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+/* 从左滑入（下一周） */
+.weekday-header.left {
+  animation-name: slideInLeft;
+}
+
+/* 从右滑入（上一周） */
+.weekday-header.right {
+  animation-name: slideInRight;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.App::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('./background.jpg') center/cover no-repeat;
+  width: 100vw;
+  height: 100vh;
+}
